@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm Of A Living Thing: Interactive Sample Appendix</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg: #14110d;
+    --panel: #1f1a12;
+    --panel-raised: #262019;
+    --hairline: #3a3226;
+    --ink: #eae2cf;
+    --ink-dim: #a89c82;
+    --amber: #e0b04f;
+    --amber-dim: #8a6c2e;
+    --tape: #5fa88f;
+    --tape-dim: #3d6e5c;
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(224,176,79,0.05), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(95,168,143,0.04), transparent 55%);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.5;
+    padding: 0 0 6rem;
+  }
+
+  a{ color: var(--amber); }
+
+  header{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .eyebrow{
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tape);
+    margin-bottom: 0.9rem;
+  }
+  h1{
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 3.1rem);
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  header p{
+    max-width: 60ch;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin: 0.4rem 0;
+  }
+  .howto{
+    margin-top: 1.6rem;
+    font-size: 0.82rem;
+    color: var(--ink-dim);
+    border-left: 2px solid var(--amber-dim);
+    padding-left: 0.9rem;
+  }
+  .howto summary{
+    cursor: pointer;
+    color: var(--amber);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .howto[open] summary{ margin-bottom: 0.6rem; }
+  .howto code{
+    background: var(--panel-raised);
+    padding: 0.1rem 0.35rem;
+    border-radius: var(--radius);
+    color: var(--tape);
+  }
+
+  .controls{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1.6rem 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  #search{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: var(--radius);
+    min-width: 220px;
+    flex: 1 1 220px;
+  }
+  #search:focus-visible, .chip:focus-visible, .track-toggle:focus-visible, .filter-clear:focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+  }
+  #search::placeholder{ color: var(--ink-dim); }
+  .chips{ display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip{
+    background: transparent;
+    border: 1px solid var(--hairline);
+    color: var(--ink-dim);
+    font-family: inherit;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    padding: 0.4rem 0.7rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .chip:hover{ border-color: var(--amber-dim); color: var(--ink); }
+  .chip.active{ border-color: var(--amber); color: var(--amber); background: rgba(224,176,79,0.08); }
+  .filter-clear{
+    background: none; border: none; color: var(--ink-dim);
+    font-family: inherit; font-size: 0.72rem; text-decoration: underline;
+    cursor: pointer; padding: 0.4rem 0.2rem; display:none;
+  }
+  .filter-clear.visible{ display:inline; }
+
+  main{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 0;
+  }
+  .track{
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    margin-bottom: 0.6rem;
+    background: var(--panel);
+    overflow: hidden;
+  }
+  .track[hidden]{ display: none; }
+
+  .track-toggle{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3.4rem 1fr 1.4rem;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    color: var(--ink);
+    font-family: inherit;
+    text-align: left;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+  }
+  .track-toggle:hover{ background: var(--panel-raised); }
+
+  .counter{
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: var(--amber);
+    background: #0e0c08;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 0.3rem 0;
+    text-align: center;
+  }
+  .track-meta{ min-width: 0; }
+  .track-title{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .track-source{
+    font-size: 0.76rem;
+    color: var(--ink-dim);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .track-tags{
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .tag{
+    font-size: 0.66rem;
+    letter-spacing: 0.03em;
+    color: var(--tape);
+    border: 1px solid var(--tape-dim);
+    border-radius: 100px;
+    padding: 0.2rem 0.55rem;
+    white-space: nowrap;
+  }
+  .chevron{
+    transition: transform 0.2s ease;
+    color: var(--ink-dim);
+    justify-self: end;
+  }
+  .track[data-open="true"] .chevron{ transform: rotate(180deg); }
+
+  .track-body{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .track[data-open="true"] .track-body{ grid-template-rows: 1fr; }
+  .track-body-inner{ overflow: hidden; }
+
+  .chain{
+    padding: 0.4rem 1.1rem 1.3rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .signal-line{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1.1rem 0 0.4rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .signal-line::before, .signal-line::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
+
+  .cell{
+    background: var(--panel-raised);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 0.8rem 0.9rem;
+  }
+  .cell-label{
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .cell-label span.credit{ color: var(--ink-dim); text-transform: none; letter-spacing: 0; font-style: italic; }
+
+  audio, video{
+    width: 100%;
+    display: block;
+    filter: sepia(8%);
+  }
+  video{ border-radius: 2px; background:#000; }
+
+  .notes{
+    margin-top: 0.9rem;
+    background: var(--panel-raised);
+    border: 1px solid var(--hairline);
+    border-left: 2px solid var(--tape);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+    color: var(--ink);
+    white-space: pre-line;
+  }
+  .notes-label{
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tape);
+    margin-bottom: 0.4rem;
+  }
+
+  .empty-state{
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    padding: 2rem 0;
+    text-align: center;
+    display: none;
+  }
+  .empty-state.visible{ display:block; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Appendix — Sample Log</div>
+  <h1>Rhythm Of A Living Thing: Interactive Sample Appendix</h1>
+  <p>Presented here is every sample used in production, the technique used to manipulate it, and the evidence from the session (for some I only had bounced audio files from the MPC and rely on video footage if I managed). Expand each track to listen to the original sample, my version/interpretation, and the finished track. Search and filter tracks by production technique.</p>
+
+  <details class="howto">
+    <summary>How this page works</summary>
+    <p>Everything is driven by the <code>tracks</code> array near the bottom of the HTML file. Each track has a <code>samples</code> list — one entry per sample used, however many that is (some tracks have one, Track 1 has seven). Point each sample's <code>src</code> at a file in the <code>media/</code> folder next to this HTML file.</p>
+    <p>To publish: zip this file + the <code>media/</code> folder together (opens in any browser, no internet needed), or host both on a free <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> site for a shareable link.</p>
+  </details>
+</header>
+
+<div class="controls">
+  <input id="search" type="text" placeholder="Search by track or sample title…" aria-label="Search tracks">
+  <div class="chips" id="chipRow" role="group" aria-label="Filter by technique"></div>
+  <button class="filter-clear" id="clearFilters" type="button">Clear filters</button>
+</div>
+
+<main id="trackList" aria-live="polite"></main>
+<p class="empty-state" id="emptyState">No tracks match that search or filter.</p>
+
+<script>
+// ---------------------------------------------------------------
+// TRACK DATA
+// Each track: title, sampleSource (verbatim), techniques (verbatim),
+// notes (verbatim), samples[] (individual audio boxes), dawVideo,
+// songSnippet. Leave any src as "" if you don't have that file yet.
+// ---------------------------------------------------------------
+const tracks = [
+  {
+    title: "Problems",
+    sampleSource: `Bola Sete - Bettina, The Winston's "Amen Break", a logic saxaphone loop, and self-recorded vocal loops`,
+    techniques: `Tempo Adjust with Vari-Speed  , frequency filtering, looping`,
+    notes: `High pass + bass boost on Bettina sample \nSax pitched -3 semi tones, low cut \nPitched up vocals and used Flex Time to quantize`,
+    samples: [
+      { label: "Bettina by Bola Sete - Workin' on a Groovy Thing 1971", src: "media/01-og-bola-sete-true-original.mp3" },
+      { label: "Bola Sete – Bettina (looped & filtered)", src: "media/01-og-bola-sete.mp3" },
+      { label: "The Winstons – Amen Break (original)", src: "media/01-og-amen-break.mp3" },
+      { label: "Logic sax loop (original)", src: "media/01-og-sax-loop.mp3" },
+      { label: "Problems chop one RAW", src: "media/01-vocal-problems-chop-one-raw.mp3" },
+      { label: "Problems chop one WET", src: "media/01-vocal-problems-chop-one-wet.mp3" },
+      { label: "IDK chop", src: "media/01-vocal-idk-chop.mp3" },
+      { label: "Help Me chop", src: "media/01-vocal-help-me-chop.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/01-song-snippet.mp3", credit: "mastered" }
+  },
+  {
+    title: "Northwest Treasure",
+    sampleSource: `Alan Feanch - Submarine Flower, LANDR Soundpack: Afro Gasm, Max Vocals 2_Gbm_100, Fire Percs_Em_100, 3.Drum Loop_2_90bpm, and Live Bass`,
+    techniques: `Chopped, pitched down, Layering`,
+    notes: `-5 Semi tones, and hi pass filtered\nLayered Feanch sample + midi Rhodes\nThis beat came out of the B section of the original demo.`,
+    samples: [
+      { label: "Alan Feanch – Submarine Flower (original)", src: "media/02-og-alan-feanch-submarine-flower.mp3" },
+      { label: "Alan Feanch Sample Chop", src: "media/02-alan-feanch-sample-chop.mp3" },
+      { label: "Original demo (Mar 11, 2026)", src: "media/02-original-demo-mar-11-2026.mp3" },
+      { label: "3.Drum Loop_2_90bpm", src: "media/02-drum-loop-2-90bpm.mp3" },
+      { label: "Fire Percs_Em_100", src: "media/02-fire-percs-em-100.mp3" },
+      { label: "Max Vocals 2_Gbm_100", src: "media/02-max-vocals-2-gbm-100.mp3" },
+      { label: "Live bass – Matthew Panakal", src: "media/02-live-bass-matthew-panakal.mp3" }
+    ],
+    dawVideo: { src: "media/02-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/02-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Smoke, Trip, Fuck",
+    sampleSource: `Fiona_3 OG Demo (May 10, 2025), OC2_49_93bpm_Multiinstrument_E (flute stem separated from this), Sample Chop, Live drum break – Deepraj Choudhury, Live bass – Matthew Panakal`,
+    techniques: `Slowed, Chopped, Micro-chopping, Layering`,
+    notes: `This beat started as a demo I made with just the flute in 2025. I replaced the drums, added live bass, and additional live recorded elements. Flute was isolated and chopped using logics stem seperater.`,
+    samples: [
+      { label: "Fiona_3 OG Demo (May 10, 2025)", src: "media/03-original-demo-flute-may-10-2025.mp3" },
+      { label: "OC2_49_93bpm_Multiinstrument_E (flute stem separated from this)", src: "media/03-oc2-49-93bpm-multiinstrument-e.mp3" },
+      { label: "Sample Chop", src: "media/03-sample-chop.mp3" },
+      { label: "Live drum break – Deepraj Choudhury", src: "media/03-live-drum-break-deepraj-choudhury.mp3" },
+      { label: "Live bass – Matthew Panakal", src: "media/03-live-bass-matthew-panakal.mp3" }
+    ],
+    dawVideo: { src: "media/03-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/03-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Heart/Time",
+    sampleSource: `MS_O_01_Outlaw_Piano Chorus_D#minor_91bpm_Dry_, 01_K_DOT_vol_1_Hihat_Bm_98bpm, MKS_98_Beat1`,
+    techniques: `chopped, Sped Up`,
+    notes: `Live bass from Matthew Panakal allowed for deeper rhythmic contrast as recommended in feedback from Technology Module.`,
+    samples: [
+      { label: "MS_O_01_Outlaw_Piano Chorus_D#minor_91bpm_Dry_ (original)", src: "media/04-og-outlaw-piano-chorus.mp3" },
+      { label: "01_K_DOT_vol_1_Hihat_Bm_98bpm (original)", src: "media/04-og-hihat-bm-98bpm.mp3" },
+      { label: "MKS_98_Beat1 (original)", src: "media/04-og-mks-98-beat1.mp3" },
+      { label: "Chop A", src: "media/04-outlaw-piano-chop-a.mp3" },
+      { label: "Chop B", src: "media/04-outlaw-piano-chop-b.mp3" },
+      { label: "Live bass – Matthew Panakal", src: "media/04-live-bass-matthew-panakal.mp3" }
+    ],
+    dawVideo: { src: "media/04-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/04-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "AYA",
+    sampleSource: `Go Vocals_Ebm_105, 85_Bbm_NoiseRhodes_01_TL, Graham Central Station - Release Yourself, "self-recorded" Synth Solo and Piano layer`,
+    techniques: `Main Vocal chop: \nJ Dilla puzzle piecing / micro chopping \nRearrange/intepreted, Rhodes :\nchopped, rearranged, filtered, Graham Central Station Release Yourself:\nPitched and sped up 2 semi tones\nChopped`,
+    notes: `Aya makes use almost all of my tricks. Good chops, interesting layers with diverse samples, original elements, and live instrumentation from Matthew Panakal and Deepraj Choudhury.`,
+    samples: [
+      { label: "Original demo (Feb 18, 2026)", src: "media/05-original-demo-feb-18-2026.mp3" },
+      { label: "Go Vocals_Ebm_105 (original)", src: "media/05-og-go-vocals.mp3" },
+      { label: "Vocal chop (J Dilla puzzle-piecing)", src: "media/05-vocal-chop.mp3" },
+      { label: "Vocal chop – DAW screen recording", src: "media/05-vocal-chop-daw-screen.mp4", type: "video" },
+      { label: "85_Bbm_NoiseRhodes_01_TL (original)", src: "media/05-og-noiserhodes.mp3" },
+      { label: "Rhodes chop – DAW screen recording", src: "media/05-rhodes-chop-daw-screen.mp4", type: "video" },
+      { label: "Graham Central Station – Release Yourself (original)", src: "media/05-og-gcs-release-yourself.mp3" },
+      { label: "Graham Central Station chop", src: "media/05-gcs-chop.mp3" },
+      { label: "Graham Central Station chop – DAW screen recording", src: "media/05-gcs-chop-daw-screen.mp4", type: "video" },
+      { label: "Self-recorded Synth Solo", src: "media/05-live-synth-solo.mp3" },
+      { label: "Self-recorded Piano layer", src: "media/05-live-piano-layer.mp3" },
+      { label: "Live drums – Deepraj Choudhury", src: "media/05-live-drums-deepraj.mp3" },
+      { label: "Live bass – Matthew Panakal", src: "media/05-live-bass-matthew.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/05-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "LIMELIGHT",
+    sampleSource: `Deepraj Choudhury WIP2 MIX 1, AA49_84bpm_Drum_Loop_Hip Hop_Break_Tribe_bip_Drums`,
+    techniques: `chopped, filtered`,
+    notes: `Limelight was originally a demo I made back in January and re-visited in August.`,
+    samples: [
+      { label: "Deepraj Choudhury WIP2 MIX 1 (original)", src: "media/06-og-deepraj-wip2-mix1.mp3" },
+      { label: "Deepraj WIP2 chop", src: "media/06-deepraj-wip2-chop.mp3" },
+      { label: "AA49_84bpm_Drum_Loop_Hip Hop_Break_Tribe_bip_Drums (original)", src: "media/06-og-aa49-drums.mp3" },
+      { label: "Self-recorded Piano layer", src: "media/06-live-piano-layer.mp3" },
+      { label: "Live bass – Daran Naphtali", src: "media/06-live-bass-daran-naphtali.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/06-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "No Place Like Home",
+    sampleSource: `John Cameron "Liquid Sunshine", Dorothy Ashby "Come Live With Me, Summer Break Rising_bip`,
+    techniques: `Chopped, Reversed, Slowed Down`,
+    notes: `This sample is a call and response or A and B divided. \nThe start of the record makes up A.\nRoughly 13-14 seconds into sample is B section \nB section is Chopped and repeated, Then reversed but aligned with original timing\n\n(Warren, 2025) \nThis was a beat that was made entirely in logic, before I had my record player. I sampled "Liquid Sunshine" by John Cameron only using the Quick Sampler stock plug-in. I manually sliced the sample by ear and played the sample in half time. The Dorothy Ashby drums had great texture, but lacked low end, so I added my own kick drum. I started with the sample, then I found my drum sample and finally I performed my chops over the drums. Once the foundation was complete, I played an electric piano to add a harmonic layer. This is a great example of how a modern sampler in a modern DAW can increase the speed and variability that I can chop my samples, while lacking the traditional warmth and saturation of the MPC2000.`,
+    samples: [
+      { label: "Liquid Sunshine – John Cameron (original)", src: "media/07-og-john-cameron.mp3" },
+      { label: "Liquid Sunshine Chop A", src: "media/07-liquid-sunshine-chop-a.mp3" },
+      { label: "Liquid Sunshine Chop B", src: "media/07-liquid-sunshine-chop-b.mp3" },
+      { label: "Chop B reversed", src: "media/07-chop-b-reversed.mp3" },
+      { label: "Come Live With Me – Dorothy Ashby (original)", src: "media/07-og-dorothy-ashby.mp3" },
+      { label: "Dorothy Ashby Drums loop + midi Kick", src: "media/07-dorothy-ashby-drums-loop-midi-kick.mp3" },
+      { label: "Summer Break Rising_bip (original)", src: "media/07-og-summer-break-rising-bip.mp3" }
+    ],
+    dawVideo: { src: "media/07-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/07-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Rhythm of A Living Thing",
+    sampleSource: `Chick Corea : My Spanish Heart - Spanish Fantasy, Pt. 2, LANDR\nOld School Chops Volume 2 - Hip-Hop Boom bap Samples Pack\nOC2_40_88bpm_Multiinstrument_C, "self-recorded" live drums and bass from Oleek`,
+    techniques: `Chopped, Pitched up`,
+    notes: `I stem separated the piano from the Chick Corea record to isolate it. Then I filtered out the highs and lows and pitched it up 2 semi tones. I dont know what processing I did on the MPC, so I am not sure if the sample came off the MPC natural or already manipulated. Chances are I changed something.`,
+    samples: [],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "", credit: "" }
+  }
+  // Add tracks 9–15 here, following the same shape as above.
+];
+
+// ---------------------------------------------------------------
+// Rendering
+// ---------------------------------------------------------------
+const listEl = document.getElementById('trackList');
+const emptyState = document.getElementById('emptyState');
+const chipRow = document.getElementById('chipRow');
+const searchInput = document.getElementById('search');
+const clearBtn = document.getElementById('clearFilters');
+
+const TAG_RULES = [
+  { label: "Tempo Adjust with Vari-Speed", re: /vari[- ]?speed|slowed(\s+down)?|sped[- ]?up/i },
+  { label: "Pitched Up", re: /pitch(ed)?\s*up/i },
+  { label: "Pitched Down", re: /pitch(ed)?\s*down/i },
+  { label: "Micro-chopping", re: /micro[- ]?chop/i },
+  { label: "Chopped", re: /\bchop/i },
+  { label: "Layering", re: /layer/i },
+  { label: "Filtering", re: /filter/i },
+  { label: "Looping", re: /\bloop/i },
+  { label: "Reversed", re: /revers/i },
+  { label: "Rearranged", re: /rearrang/i }
+];
+function deriveTags(str){
+  const text = str || "";
+  return TAG_RULES.filter(rule => rule.re.test(text)).map(rule => rule.label);
+}
+tracks.forEach(t => { t._tags = deriveTags(t.techniques); });
+const allTags = [...new Set(tracks.flatMap(t => t._tags))].sort();
+let activeTag = null;
+let query = "";
+
+function mediaCell(label, media, kind){
+  if(!media || !media.src) return "";
+  const el = kind === "video"
+    ? `<video controls preload="none" src="${media.src}"></video>`
+    : `<audio controls preload="none" src="${media.src}"></audio>`;
+  return `
+    <div class="cell">
+      <div class="cell-label"><span>${label}</span>${media.credit ? `<span class="credit">${media.credit}</span>` : ""}</div>
+      ${el}
+    </div>`;
+}
+
+function renderTrack(t, index){
+  const num = String(index + 1).padStart(2, "0");
+  const subtitle = (t.sampleSource || "").split("\n")[0];
+
+  const sourceCells = (t.samples || []).map(s => mediaCell(s.label, s, s.type || "audio")).join("");
+  const evidenceCells = mediaCell("DAW Screen Recording", t.dawVideo, "video") + mediaCell("Song / Snippet", t.songSnippet, "audio");
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "track";
+  wrapper.dataset.open = "false";
+  wrapper.dataset.title = t.title.toLowerCase();
+  wrapper.dataset.source = (t.sampleSource || "").toLowerCase();
+  wrapper.dataset.tags = t._tags.join("|").toLowerCase();
+
+  wrapper.innerHTML = `
+    <button class="track-toggle" aria-expanded="false">
+      <span class="counter">${num}</span>
+      <span class="track-meta">
+        <span class="track-title">${t.title}</span>
+        <span class="track-source">${subtitle || "—"}</span>
+      </span>
+      <span class="chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="track-body">
+      <div class="track-body-inner">
+        <div class="chain">
+          <div class="notes"><div class="notes-label">Sampled</div>${t.sampleSource || "—"}</div>
+          <div class="notes"><div class="notes-label">Techniques</div>${t.techniques || "—"}</div>
+          <div class="signal-line">source samples</div>
+          <div class="grid">${sourceCells || `<div class="cell"><div class="cell-label"><span>No source audio uploaded yet</span></div></div>`}</div>
+          <div class="signal-line">evidence &amp; result</div>
+          <div class="grid">${evidenceCells || `<div class="cell"><div class="cell-label"><span>No evidence media uploaded yet</span></div></div>`}</div>
+          ${t.notes ? `<div class="notes"><div class="notes-label">Technique notes</div>${t.notes}</div>` : ""}
+        </div>
+      </div>
+    </div>
+  `;
+
+  const toggle = wrapper.querySelector(".track-toggle");
+  toggle.addEventListener("click", () => {
+    const isOpen = wrapper.dataset.open === "true";
+    wrapper.dataset.open = String(!isOpen);
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  return wrapper;
+}
+
+tracks.forEach((t, i) => listEl.appendChild(renderTrack(t, i)));
+
+allTags.forEach(tag => {
+  const chip = document.createElement("button");
+  chip.className = "chip";
+  chip.type = "button";
+  chip.textContent = tag;
+  chip.addEventListener("click", () => {
+    activeTag = activeTag === tag ? null : tag;
+    [...chipRow.children].forEach(c => c.classList.toggle("active", c.textContent === activeTag));
+    applyFilters();
+  });
+  chipRow.appendChild(chip);
+});
+
+searchInput.addEventListener("input", (e) => {
+  query = e.target.value.trim().toLowerCase();
+  applyFilters();
+});
+
+clearBtn.addEventListener("click", () => {
+  activeTag = null;
+  query = "";
+  searchInput.value = "";
+  [...chipRow.children].forEach(c => c.classList.remove("active"));
+  applyFilters();
+});
+
+function applyFilters(){
+  let visibleCount = 0;
+  [...listEl.children].forEach(el => {
+    const matchesQuery = !query || el.dataset.title.includes(query) || el.dataset.source.includes(query);
+    const matchesTag = !activeTag || el.dataset.tags.includes(activeTag.toLowerCase());
+    const show = matchesQuery && matchesTag;
+    el.hidden = !show;
+    if(show) visibleCount++;
+  });
+  emptyState.classList.toggle("visible", visibleCount === 0);
+  clearBtn.classList.toggle("visible", !!activeTag || !!query);
+}
+</script>
+
+</body>
+</html>
