@@ -344,7 +344,7 @@ const tracks = [
   {
     title: "Problems",
     sampleSource: `Bola Sete - Bettina, The Winston's "Amen Break", a logic saxaphone loop, and self-recorded vocal loops`,
-    techniques: `Tempo Adjust with Vari-Speed  , frequency filtering, looping`,
+    techniques: `Tempo manipulation, filtering, layering, and looping`,
     notes: `High pass + bass boost on Bettina sample \nSax pitched -3 semi tones, low cut \nPitched up vocals and used Flex Time to quantize`,
     samples: [
       { label: "Bettina by Bola Sete - Workin' on a Groovy Thing 1971", src: "media/01-og-bola-sete-true-original.mp3" },
@@ -362,7 +362,7 @@ const tracks = [
   {
     title: "Northwest Treasure",
     sampleSource: `Alan Feanch - Submarine Flower, LANDR Soundpack: Afro Gasm, Max Vocals 2_Gbm_100, Fire Percs_Em_100, 3.Drum Loop_2_90bpm, and Live Bass`,
-    techniques: `Chopped, pitched down, Layering`,
+    techniques: `Micro-chopping, Pitch manipulation, and layering.`,
     notes: `-5 Semi tones, and hi pass filtered\nLayered Feanch sample + midi Rhodes\nThis beat came out of the B section of the original demo.`,
     samples: [
       { label: "Alan Feanch – Submarine Flower (original)", src: "media/02-og-alan-feanch-submarine-flower.mp3" },
@@ -379,7 +379,7 @@ const tracks = [
   {
     title: "Smoke, Trip, Fuck",
     sampleSource: `Fiona_3 OG Demo (May 10, 2025), OC2_49_93bpm_Multiinstrument_E (flute stem separated from this), Sample Chop, Live drum break – Deepraj Choudhury, Live bass – Matthew Panakal`,
-    techniques: `Slowed, Chopped, Micro-chopping, Layering`,
+    techniques: `Tempo Manipulation, Micro-chopping, melodic chopping, and layering`,
     notes: `This beat started as a demo I made with just the flute in 2025. I replaced the drums, added live bass, and additional live recorded elements. Flute was isolated and chopped using logics stem seperater.`,
     samples: [
       { label: "Fiona_3 OG Demo (May 10, 2025)", src: "media/03-original-demo-flute-may-10-2025.mp3" },
@@ -394,7 +394,7 @@ const tracks = [
   {
     title: "Heart/Time",
     sampleSource: `MS_O_01_Outlaw_Piano Chorus_D#minor_91bpm_Dry_, 01_K_DOT_vol_1_Hihat_Bm_98bpm, MKS_98_Beat1`,
-    techniques: `chopped, Sped Up`,
+    techniques: `Tempo manipulation, rearranged, melodic chopping`,
     notes: `Live bass from Matthew Panakal allowed for deeper rhythmic contrast as recommended in feedback from Technology Module.`,
     samples: [
       { label: "MS_O_01_Outlaw_Piano Chorus_D#minor_91bpm_Dry_ (original)", src: "media/04-og-outlaw-piano-chorus.mp3" },
@@ -410,7 +410,7 @@ const tracks = [
   {
     title: "AYA",
     sampleSource: `Go Vocals_Ebm_105, 85_Bbm_NoiseRhodes_01_TL, Graham Central Station - Release Yourself, "self-recorded" Synth Solo and Piano layer`,
-    techniques: `Main Vocal chop: \nJ Dilla puzzle piecing / micro chopping \nRearrange/intepreted, Rhodes :\nchopped, rearranged, filtered, Graham Central Station Release Yourself:\nPitched and sped up 2 semi tones\nChopped`,
+    techniques: `Micro-chopping, Melodic chopping, rearranged, filtering, Pitch Manipulation, Tempo Manipulation`,
     notes: `Aya makes use almost all of my tricks. Good chops, interesting layers with diverse samples, original elements, and live instrumentation from Matthew Panakal and Deepraj Choudhury.`,
     samples: [
       { label: "Original demo (Feb 18, 2026)", src: "media/05-original-demo-feb-18-2026.mp3" },
@@ -433,7 +433,7 @@ const tracks = [
   {
     title: "LIMELIGHT",
     sampleSource: `Deepraj Choudhury WIP2 MIX 1, AA49_84bpm_Drum_Loop_Hip Hop_Break_Tribe_bip_Drums`,
-    techniques: `chopped, filtered`,
+    techniques: `Micro-chopping, Tempo Manipulation, Pitch Manipulation, filtering, MPC2000`,
     notes: `Limelight was originally a demo I made back in January and re-visited in August.`,
     samples: [
       { label: "Deepraj Choudhury WIP2 MIX 1 (original)", src: "media/06-og-deepraj-wip2-mix1.mp3" },
@@ -448,7 +448,7 @@ const tracks = [
   {
     title: "No Place Like Home",
     sampleSource: `John Cameron "Liquid Sunshine", Dorothy Ashby "Come Live With Me, Summer Break Rising_bip`,
-    techniques: `Chopped, Reversed, Slowed Down`,
+    techniques: `Melodic chopping, Reversed, Tempo manipulation, filtering, rearranged`,
     notes: `This sample is a call and response or A and B divided. \nThe start of the record makes up A.\nRoughly 13-14 seconds into sample is B section \nB section is Chopped and repeated, Then reversed but aligned with original timing\n\n(Warren, 2025) \nThis was a beat that was made entirely in logic, before I had my record player. I sampled "Liquid Sunshine" by John Cameron only using the Quick Sampler stock plug-in. I manually sliced the sample by ear and played the sample in half time. The Dorothy Ashby drums had great texture, but lacked low end, so I added my own kick drum. I started with the sample, then I found my drum sample and finally I performed my chops over the drums. Once the foundation was complete, I played an electric piano to add a harmonic layer. This is a great example of how a modern sampler in a modern DAW can increase the speed and variability that I can chop my samples, while lacking the traditional warmth and saturation of the MPC2000.`,
     samples: [
       { label: "Liquid Sunshine – John Cameron (original)", src: "media/07-og-john-cameron.mp3" },
@@ -457,21 +457,140 @@ const tracks = [
       { label: "Chop B reversed", src: "media/07-chop-b-reversed.mp3" },
       { label: "Come Live With Me – Dorothy Ashby (original)", src: "media/07-og-dorothy-ashby.mp3" },
       { label: "Dorothy Ashby Drums loop + midi Kick", src: "media/07-dorothy-ashby-drums-loop-midi-kick.mp3" },
-      { label: "Summer Break Rising_bip (original)", src: "media/07-og-summer-break-rising-bip.mp3" }
+      { label: "Summer Break Rising_bip (original)", src: "media/07-og-summer-break-rising-bip.mp3" },
+      { label: "Practice as Research video", src: "media/07-par-video.mp4", type: "video" }
     ],
     dawVideo: { src: "media/07-daw-screen.mp4", credit: "" },
     songSnippet: { src: "media/07-song-snippet.mp3", credit: "" }
   },
   {
     title: "Rhythm of A Living Thing",
-    sampleSource: `Chick Corea : My Spanish Heart - Spanish Fantasy, Pt. 2, LANDR\nOld School Chops Volume 2 - Hip-Hop Boom bap Samples Pack\nOC2_40_88bpm_Multiinstrument_C, "self-recorded" live drums and bass from Oleek`,
-    techniques: `Chopped, Pitched up`,
+    sampleSource: `Chick Corea : My Spanish Heart - Spanish Fantasy, Pt. 2, LANDR\nOld School Chops Volume 2 - Hip-Hop Boom bap Samples Pack\nOC2_40_88bpm_Multiinstrument_C, live drums and bass from Deepraj Choudhury and Matthew Panakal`,
+    techniques: `Pitch Manipulation, Tempo Manipulation, Filtering, Looping, rearranged, MPC2000`,
     notes: `I stem separated the piano from the Chick Corea record to isolate it. Then I filtered out the highs and lows and pitched it up 2 semi tones. I dont know what processing I did on the MPC, so I am not sure if the sample came off the MPC natural or already manipulated. Chances are I changed something.`,
-    samples: [],
+    samples: [
+      { label: "Spanish Fantasy, Pt. 2 – stem-separated piano (Chick Corea)", src: "media/08-og-chick-corea-stem-separated-piano.mp3" },
+      { label: "Spanish Fantasy, Pt. 2 Chop", src: "media/08-chick-corea-chop.mp3" },
+      { label: "OC2_40_88bpm_Multiinstrument_C (original)", src: "media/08-og-oc2-40-multiinstrument-c.mp3" },
+      { label: "Live drums – Deepraj Choudhury", src: "media/08-live-drums-deepraj-choudhury.mp3" },
+      { label: "Live bass – Matthew Panakal", src: "media/08-live-bass-matthew-panakal.mp3" }
+    ],
+    dawVideo: { src: "media/08-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/08-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "afeelingforthecloud",
+    sampleSource: `1970s Fender Rhodes Piano Demo Record featuring Herbie Hancock Side 1 of 2`,
+    techniques: `Micro-chopping, melodic chopping, filtering, Pitch Manipulation, MPC2000`,
+    notes: `"I found another great sample of a 1970s Fender Rhodes Piano Demo Record featuring Herbie Hancock and I chopped up some of his chords, tuned them down a bit, and found two really great drum breaks from some sample packs have on my hard drive. I arranged the break to switch after every four bars (A,B), occasionally letting the B drums play out. I also played the bass under this but had in mind that I could get a session player named Matthew to play over it. This session felt much more flowy, maybe because I had already been producing for a few hours before switching to a new idea. It felt tighter because I was working with drum breaks, but I was happy with my chops and how I made Herbies chords into something new."`,
+    samples: [
+      { label: "1970s Fender Rhodes Piano Demo Record ft. Herbie Hancock (original)", src: "media/09-og-herbie-hancock-fender-rhodes-demo.mp3" },
+      { label: "Herbie Hancock chords (chop)", src: "media/09-herbie-nice-chords-01.mp3" },
+      { label: "Herbie Hancock chords – B section reversed", src: "media/09-herbie-chords-b-section-reversed.mp3" },
+      { label: "Main Sample Chop (tuned down)", src: "media/09-main-sample-chop.mp3" },
+      { label: "Herbie talking intro", src: "media/09-herbie-talking-intro.mp3" },
+      { label: "Drum breaks (original)", src: "" }
+    ],
+    dawVideo: { src: "media/09-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/09-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Rhymes & Heartstrings",
+    sampleSource: `Milestones - Walter Bishop Jr. & Violets for Your Furs - Jutta Hipp Zoot Sims`,
+    techniques: `Micro-chopping, melodic chopping, filtering, Pitch Manipulation, MPC2000`,
+    notes: `"I digitally sampled the piano intro from "Milestones" by Walter Bishop Jr. and "Violets for Your Furs" by Jutta Hipp\nZoot Sims. I played the bassline and drums myself. Drums were played on the MPC and recorded into logic and\nthen quantized there."`,
+    samples: [
+      { label: "Milestones – Walter Bishop Jr. (original)", src: "media/10-og-walter-bishop-milestones.mp3" },
+      { label: "Milestones chop (MPC2000)", src: "media/10-milestones-chop.mp3" },
+      { label: "Violets for Your Furs – Jutta Hipp (original)", src: "media/10-og-jutta-hipp-violets-for-your-furs.mp3" },
+      { label: "MPC individual pad samples 1 (full pad bounce)", src: "media/10-mpc-individual-pad-samples-1.mp3" },
+      { label: "MPC individual pad samples 2 (full pad bounce)", src: "media/10-mpc-individual-pad-samples-2.mp3" },
+      { label: "MPC drums (audio bounce)", src: "media/10-mpc-drums-audio.mp3" }
+    ],
+    dawVideo: { src: "media/10-daw-screen.mp4", credit: "" },
+    songSnippet: { src: "media/10-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Apron",
+    sampleSource: `Saxaphone & Guitar from sample packs, Live original piano`,
+    techniques: `Tempo Manipulation, Layering, filtering`,
+    notes: `Apron is a special track as it was the first beat I made in Berlin back in September. I remember listening to a UK artist named Hilst and his album "Swings & Roundabouts". This was the direct influence for these rhythms. Then I came together with BIMM BA student, who also has a UK background, and he sang the hook and helped me mix the track. I also recorded live piano from my first apartment in Berlin. I haven't had access to a piano at home since then. I wish I recorded more for this album.`,
+    samples: [
+      { label: "Original demo (first idea)", src: "media/11-original-demo.mp3" },
+      { label: "Guitar (sample pack, original)", src: "media/11-og-guitar-sample-pack.mp3" },
+      { label: "Tenor Sax (sample pack, original)", src: "media/11-og-sax-sample-pack.mp3" },
+      { label: "Live piano – arpeggios", src: "media/11-live-piano-arpeggios.mp3" },
+      { label: "Live piano – Cm7/11", src: "media/11-live-piano-cm7-11.mp3" },
+      { label: "Shakers (original)", src: "media/11-og-shakers.mp3" }
+    ],
     dawVideo: { src: "", credit: "" },
-    songSnippet: { src: "", credit: "" }
+    songSnippet: { src: "media/11-song-snippet.mp3", credit: "" }
+  },
+  {
+    title: "Hometown",
+    sampleSource: `The best of Alan Parsons Project:\n"I wouldn't like to be like you" Track 1 Side 1, Allan Watts, David Blayne, Alliant Audio Boom Bap Drums Vol.1`,
+    techniques: `MPC2000, 16 levels function, Melodic Chopping, Filtering`,
+    notes: `Hometown is a special beat for me because it was the first time I successfully used the 16 levels function to do a melodic chop. The MPC has limited capabilities and this was a function that opened up a wide range of harmonic, tempo, and feel manipulation. Very happy to have so many friends with me on this cypher track too.`,
+    samples: [
+      { label: "I wouldn't like to be like you – Alan Parsons Project (original)", src: "media/12-og-alan-parsons-project.mp3" },
+      { label: "Intro chops (16 levels melodic chop)", src: "media/12-intro-chops.mp3" },
+      { label: "Main verse chops (16 levels melodic chop)", src: "media/12-main-verse-chops.mp3" },
+      { label: "Alliant Audio Boom Bap Drums Vol.1 (original)", src: "media/12-og-aa49-boom-bap-drums.mp3" },
+      { label: "Allan Watts & David Blayne vocal samples", src: "media/12-allan-watts-david-blayne-vocal-samples.mp3" },
+      { label: "Video evidence", src: "media/12-video-evidence.mp4", type: "video" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/12-song-snippet.mp3", credit: "feat. The 52 Collective, LVTHØR & Tytus" }
+  },
+  {
+    title: "Richness of Nature",
+    sampleSource: `LANDR sample packs (drum sample pack, coastline keys loop, piano sample pack), plus live instrumentation from Axel Wahlund (guitar), Matthew Panakal (bass), and Deepraj Choudhury (drums)`,
+    techniques: `Filtering, looping, and reversing`,
+    notes: `My main influence for this song was "Heartstrings" (feat. Carlos Santana) by Felly. I built around some nice samples I found on LANDR, a great resource for royalty free samples. I wanted to showcase my ability to world build around something, so I invited my band Oleek to collaborate and build around these samples. The result is an atmospheric, fluid and transient time feel, strong Dilla rhythm influence, and an emotional rap to accompany it all. This song was the hardest to mix and had the most versions (11).`,
+    samples: [
+      { label: "Drum sample pack (original)", src: "media/13-og-drum-sample-pack.mp3" },
+      { label: "Coastline keys loop (original)", src: "media/13-og-coastline-keys-loop.mp3" },
+      { label: "Piano sample pack (original)", src: "media/13-og-piano-sample-pack.mp3" },
+      { label: "Piano chop – main", src: "media/13-piano-chop-main.mp3" },
+      { label: "Piano chop – reversed", src: "media/13-piano-chop-reversed.mp3" },
+      { label: "Live guitar – Axel Wahlund (outro snippet)", src: "media/13-live-guitar-axel-wahlund.mp3" },
+      { label: "Live bass – Matthew Panakal (first verse snippet)", src: "media/13-live-bass-matthew-panakal.mp3" },
+      { label: "Live drums – Deepraj Choudhury", src: "media/13-live-drums-deepraj-choudhury.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/13-song-snippet.mp3", credit: "feat. Axel Wahlund, Matthew Panakal & Deepraj Choudhury" }
+  },
+  {
+    title: "Cookies",
+    sampleSource: `"Don't Be Scared" by Captain & Tennille (1977, from "Come In From The Rain"), plus a drum sample pack loop and a piano sample pack loop`,
+    techniques: `Micro-chopping, pitch manipulation, tempo manipulation, filtering, MPC2000`,
+    notes: `This record was found in the same crate digging session as I found Chick Corea's "My Spanish Fantasy." I used the samples from this record to add contrast to another sample pack loop I had found. This is a good example of a sample not taking the main role, but rather adding support and sonic contrast. Again, the warmth and saturated sound of the MPC is showcased nicely in how this sounds.`,
+    samples: [
+      { label: "Streets drum loop (original, sample pack)", src: "media/14-og-streets-drum-loop.mp3" },
+      { label: "\"Don't Be Scared\" – full (original)", src: "media/14-og-dont-be-scared-full.mp3" },
+      { label: "\"Don't Be Scared\" – intro (original)", src: "media/14-og-dont-be-scared-intro.mp3" },
+      { label: "Micro-chops (my chop)", src: "media/14-chop-micro-chops.mp3" },
+      { label: "Piano loop (original, sample pack)", src: "media/14-og-piano-sample-pack.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/14-song-snippet.mp3", credit: "feat. LVTHØR" }
+  },
+  {
+    title: "High Comfort, Pt. 5",
+    sampleSource: `Chick Corea – "Spanish Fantasy, Pt. 2," plus drum sample pack loops ("Soul Funk No Dice" and a second drum loop) and an original bass line`,
+    techniques: `Pitch manipulation, tempo manipulation, looping, filtering, layering, MPC2000`,
+    notes: `Taking inspiration from MADLIB, I didn't want to be afraid of showcasing a great loop. This sample stood out to me musically, texturally, and also as a way for me to put Chick front and center. I even reference the original song title by including "Pt. 5" — at the end of the album, Corea has 4 parts to the "Spanish Fantasy" collection. This was my way of paying homage to him.`,
+    samples: [
+      { label: "\"Spanish Fantasy, Pt. 2\" (original)", src: "media/15-og-spanish-fantasy-pt2.mp3" },
+      { label: "Spanish Fantasy – chopped & looped (my chop)", src: "media/15-chop-spanish-fantasy-looped.mp3" },
+      { label: "\"Soul Funk No Dice\" – Freeze 3 (original, sample pack)", src: "media/15-og-soul-funk-no-dice-freeze.mp3" },
+      { label: "\"Soul Funk No Dice\" – drum sample (original, sample pack)", src: "media/15-og-soul-funk-no-dice-drum.mp3" },
+      { label: "Drum loop (original, sample pack)", src: "media/15-og-drumloop-sample-pack.mp3" },
+      { label: "Original bass line", src: "media/15-bass-original.mp3" }
+    ],
+    dawVideo: { src: "", credit: "" },
+    songSnippet: { src: "media/15-song-snippet.mp3", credit: "" }
   }
-  // Add tracks 9–15 here, following the same shape as above.
 ];
 
 // ---------------------------------------------------------------
@@ -484,11 +603,11 @@ const searchInput = document.getElementById('search');
 const clearBtn = document.getElementById('clearFilters');
 
 const TAG_RULES = [
-  { label: "Tempo Adjust with Vari-Speed", re: /vari[- ]?speed|slowed(\s+down)?|sped[- ]?up/i },
-  { label: "Pitched Up", re: /pitch(ed)?\s*up/i },
-  { label: "Pitched Down", re: /pitch(ed)?\s*down/i },
+  { label: "Tempo Manipulation", re: /vari[- ]?speed|slowed(\s+down)?|sped[- ]?up/i },
+  { label: "Pitch Manipulation", re: /pitch(ed)?\s*(up|down)?/i },
+  { label: "MPC2000", re: /MPC ?2000/i },
   { label: "Micro-chopping", re: /micro[- ]?chop/i },
-  { label: "Chopped", re: /\bchop/i },
+  { label: "Melodic Chopping", re: /melodic\s*chop/i },
   { label: "Layering", re: /layer/i },
   { label: "Filtering", re: /filter/i },
   { label: "Looping", re: /\bloop/i },
@@ -565,6 +684,15 @@ function renderTrack(t, index){
 }
 
 tracks.forEach((t, i) => listEl.appendChild(renderTrack(t, i)));
+
+// Stop any other playing audio/video whenever one starts
+document.querySelectorAll('audio, video').forEach(el => {
+  el.addEventListener('play', () => {
+    document.querySelectorAll('audio, video').forEach(other => {
+      if (other !== el && !other.paused) other.pause();
+    });
+  });
+});
 
 allTags.forEach(tag => {
   const chip = document.createElement("button");
